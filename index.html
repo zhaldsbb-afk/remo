@@ -1,1 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Remo Autodetailing & Carwash Premium</title>
 
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family: 'Segoe UI', sans-serif;
+}
+
+body{
+background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+display:flex;
+justify-content:center;
+}
+
+.app{
+width:100%;
+max-width:430px;
+padding:20px;
+color:white;
+}
+
+/* LOGO */
+.logo{
+width:110px;
+display:block;
+margin:0 auto 15px auto;
+}
+
+/* TITLE */
+h1{
+text-align:center;
+margin-bottom:20px;
+font-weight:600;
+letter-spacing:1px;
+}
+
+/* GLASS CARD */
+.card{
+background: rgba(255,255,255,0.08);
+border-radius:20px;
+padding:15px;
+margin-bottom:18px;
+backdrop-filter: blur(18px);
+-webkit-backdrop-filter: blur(18px);
+border:1px solid rgba(255,255,255,0.15);
+box-shadow:0 10px 30px rgba(0,0,0,0.5);
+transition:0.3s ease;
+}
+
+/* PACKAGE BUTTON */
+.toggle-btn{
+width:100%;
+padding:12px;
+border:none;
+border-radius:30px;
+background:linear-gradient(45deg,#00f2fe,#4facfe);
+color:white;
+font-weight:600;
+cursor:pointer;
+transition:0.3s;
+}
+
+.toggle-btn:hover{
+transform:scale(1.03);
+box-shadow:0 0 15px rgba(0,242,254,0.6);
+}
+
+/* CONTENT ANIMATION */
+.package-content{
+max-height:0;
+overflow:hidden;
+transition:max-height 0.5s ease;
+}
+
+.package-content.active{
+max-height:1000px;
+margin-top:15px;
+}
+
+/* IMAGES GRID */
+.images{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
+}
+
+.images img{
+width:100%;
+height:150px;
+object-fit:cover;
+border-radius:14px;
+cursor:pointer;
+transition:0.4s;
+}
+
+.images img:hover{
+transform:scale(1.08);
+}
+
+/* FORM */
+.booking-form{
+margin-top:15px;
+display:flex;
+flex-direction:column;
+gap:10px;
+}
+
+.booking-form input{
+padding:12px;
+border-radius:12px;
+border:none;
+outline:none;
+font-size:14px;
+}
+
+.book-btn{
+background:linear-gradient(45deg,#00ffcc,#00c6ff);
+border:none;
+padding:12px;
+border-radius:30px;
+font-weight:bold;
+cursor:pointer;
+transition:0.3s;
+}
+
+.book-btn:hover{
+transform:scale(1.05);
+box-shadow:0 0 12px rgba(0,255,204,0.7);
+}
+
+/* FOOTER */
+.footer{
+margin-top:30px;
+padding-top:20px;
+border-top:1px solid rgba(255,255,255,0.2);
+text-align:center;
+}
+
+.socials{
+display:flex;
+justify-content:center;
+gap:22px;
+margin-bottom:20px;
+}
+
+.socials img{
+width:30px;
+height:30px;
+transition:0.3s;
+}
+
+.socials img:hover{
+transform:scale(1.2);
+filter:drop-shadow(0 0 6px #00f2fe);
+}
+
+.qr{
+background:white;
+padding:10px;
+border-radius:15px;
+display:inline-block;
+}
+
+.qr img{
+width:130px;
+}
+
+/* IMAGE ZOOM MODAL */
+.modal{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.85);
+justify-content:center;
+align-items:center;
+z-index:1000;
+}
+
+.modal img{
+max-width:90%;
+max-height:90%;
+border-radius:15px;
+}
+
+@media(max-width:400px){
+.images img{
+height:120px;
+}
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<img src="logo.jpg" class="logo">
+
+<h1>Remo Carwash & Auto Detailing</h1>
+
+<script>
+function togglePackage(id){
+const el = document.getElementById(id);
+el.classList.toggle("active");
+}
+
+function openModal(src){
+document.getElementById("modalImg").src = src;
+document.getElementById("imageModal").style.display="flex";
+}
+
+function closeModal(){
+document.getElementById("imageModal").style.display="none";
+}
+</script>
+
+<!-- PACKAGE TEMPLATE -->
+
+<div class="card">
+<button class="toggle-btn" onclick="togglePackage('pkg1')">Basic Wash</button>
+<div id="pkg1" class="package-content">
+<div class="images">
+<img src="package1image1.jpg" onclick="openModal(this.src)">
+<img src="package1image2.jpg" onclick="openModal(this.src)">
+</div>
+<form class="booking-form">
+<input type="text" placeholder="Full Name">
+<input type="text" placeholder="Vehicle Type">
+<input type="text" placeholder="Mobile Number">
+<button type="button" class="book-btn">Book Now</button>
+</form>
+</div>
+</div>
+
+<!-- Repeat same structure for others -->
+
+<div class="card">
+<button class="toggle-btn" onclick="togglePackage('pkg2')">Premium Wash</button>
+<div id="pkg2" class="package-content">
+<div class="images">
+<img src="package2image1.jpg" onclick="openModal(this.src)">
+<img src="package2image2.jpg" onclick="openModal(this.src)">
+</div>
+</div>
+</div>
+
+<div class="card">
+<button class="toggle-btn" onclick="togglePackage('pkg3')">Interior Cleaning</button>
+<div id="pkg3" class="package-content">
+<div class="images">
+<img src="package3image1.jpg" onclick="openModal(this.src)">
+<img src="package3image2.jpg" onclick="openModal(this.src)">
+</div>
+</div>
+</div>
+
+<div class="card">
+<button class="toggle-btn" onclick="togglePackage('pkg4')">Exterior Detailing</button>
+<div id="pkg4" class="package-content">
+<div class="images">
+<img src="package4image1.jpg" onclick="openModal(this.src)">
+<img src="package4image2.jpg" onclick="openModal(this.src)">
+</div>
+</div>
+</div>
+
+<div class="card">
+<button class="toggle-btn" onclick="togglePackage('pkg5')">Full Detail</button>
+<div id="pkg5" class="package-content">
+<div class="images">
+<img src="package5image1.jpg" onclick="openModal(this.src)">
+<img src="package5image2.jpg" onclick="openModal(this.src)">
+</div>
+</div>
+</div>
+
+<div class="card">
+<button class="toggle-btn" onclick="togglePackage('combo1')">Combo 1</button>
+<div id="combo1" class="package-content">
+<div class="images">
+<img src="combopk1image1.jpg" onclick="openModal(this.src)">
+<img src="combopk1image2.jpg" onclick="openModal(this.src)">
+</div>
+</div>
+</div>
+
+<div class="card">
+<button class="toggle-btn" onclick="togglePackage('combo2')">Combo 2</button>
+<div id="combo2" class="package-content">
+<div class="images">
+<img src="combopk2image1.jpg" onclick="openModal(this.src)">
+<img src="combopk2image2.jpg" onclick="openModal(this.src)">
+</div>
+</div>
+</div>
+
+<div class="card">
+<button class="toggle-btn" onclick="togglePackage('auto')">Auto Detailing Rates</button>
+<div id="auto" class="package-content">
+<div class="images" style="grid-template-columns:1fr;">
+<img src="autodetailingrates.jpg" onclick="openModal(this.src)">
+</div>
+</div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+<div class="socials">
+<img src="facebook.png">
+<img src="instagram.jpeg">
+<img src="whatsapp.jpeg">
+<img src="phone.png">
+<img src="share.webp">
+</div>
+
+<div class="qr">
+<img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=RemoCarwash">
+</div>
+</div>
+
+</div>
+
+<!-- IMAGE MODAL -->
+<div id="imageModal" class="modal" onclick="closeModal()">
+<img id="modalImg">
+</div>
+
+</body>
+  </html>
